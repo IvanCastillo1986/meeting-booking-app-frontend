@@ -1,0 +1,10 @@
+@import './design_utils/colors';
+
+
+.App {
+  text-align: center;
+  color: white;
+  background: $nighttime;
+  font-family: "Roboto";
+  font-weight: 300;
+}

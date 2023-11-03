@@ -1,0 +1,84 @@
+@import '../design_utils/colors';
+
+
+.navbar {
+    background: linear-gradient(#2e2157, #2e2157 65%, #840b67 85%, #f6019d);
+    height: 35vh;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+    
+    ul {
+        margin: 0;
+        padding: 0;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    &__links {
+        display: flex;
+    }
+    li {
+        padding: 20px;
+        list-style: none;
+    }
+    a {
+        color: $neon-blue;
+        text-shadow: $neon-blue 1px 0 10px;
+        font-size: 25px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    &__faulty-letter-one {
+        opacity: 0.5;
+        animation: faulty-flicker-one 2s infinite;
+    }
+    &__faulty-letter-two {
+        animation: pulsate 3s infinite;
+    }
+
+    &__sun {
+        background: linear-gradient(#f9c80e, #f9c80e 15%, #fd3777 50%);
+        width: 25%;
+        padding-top: 25%;
+        height: auto;
+        border-radius: 100%;
+        margin: auto;
+        overflow: hidden;
+        z-index: -99;
+        box-shadow: inset 0 0 10px 1px #f9700e, 0 0 20px 1px #f9700e;
+    }
+
+
+    @keyframes faulty-flicker-one {
+        0% {opacity: 0.1;}        
+        2% {opacity: 1;}
+        10% {opacity: 0.5;}
+        25% {opacity: 1;}
+        50% {opacity: 0.5;}
+        60% {opacity: 0.9;}
+        80% {opacity: 0.7;}
+        83% {opacity: 0.3;}
+        89% {opacity: 0.5;}
+        95% {opacity: 0.2;}
+        100% {opacity: 0.1;}
+    }
+    @keyframes faulty-flicker-two {
+        0% {opacity: 1}
+        30% {opacity: .5}
+        65% {opacity: .7}
+        90% {opacity: .1}
+        100% {opacity: .8}
+    }
+    @keyframes pulsate {
+        0% {opacity: 1;}
+        50% {opacity: 0.6;}
+        100% {opacity: 1;}
+    }
+
+}
