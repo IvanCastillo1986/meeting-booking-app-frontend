@@ -5,6 +5,11 @@
   text-align: center;
   color: white;
   background: $nighttime;
-  font-family: "Roboto";
+  font-family: "Roboto", monospace;
   font-weight: 300;
+
+  .pageContainer {
+    margin-top: 100px;
+  }
+
 }

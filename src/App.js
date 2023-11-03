@@ -39,15 +39,16 @@ function App() {
           '/bookings/:id'
           <SingleBooking />
         */}
-
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="meetingrooms/:id" element={<SingleMeetingRoom />} />
-        <Route path="meetingrooms/new" element={<NewRoom />} />
-        <Route path="bookings" element={<Bookings />} />
-        <Route path="bookings/:id" element={<SingleBooking />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <div className='pageContainer'>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="meetingrooms/:id" element={<SingleMeetingRoom />} />
+          <Route path="meetingrooms/new" element={<NewRoom />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="bookings/:id" element={<SingleBooking />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </div>
   );
 }

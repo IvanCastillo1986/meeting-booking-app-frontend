@@ -1,0 +1,20 @@
+.booking-form {
+    
+    margin-bottom: 40px;
+    
+    li {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    label {
+        text-align: left;
+        grid-column: 1/2;
+    }
+    input {
+        grid-column: 2/4;
+        border: 2px solid ;
+        border-radius: 5px;
+    }
+}
