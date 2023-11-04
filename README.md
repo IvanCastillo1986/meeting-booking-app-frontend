@@ -1,13 +1,14 @@
 # Blackstone Take-home Assignment
 # Meeting Room Booking App
 
-# ToDo
-Finish working on Bookings.js page. Make API call to gather bookingAndMeeting data to 
-display in BookingAndMeetingCard.js
 
-Finish SingleBookings.js page.
+# ToDo
+Build NewRoom.js page.
 
 Filter future dates.
+
+Style Bookings.js page.
+Style SingleBookings.js page.
 
 I believe I have finished working on the back-end for all routes and queries.
 
@@ -34,4 +35,3 @@ webpack compiled successfully
 The website should automatically pop up on your web browser.
 But if it does not, you can open a browser and navigate to the url: 
 localhost:3000
-
