@@ -12,18 +12,10 @@ export default function Bookings() {
 
     const [bookings, setBookings] = useState([])
 
-    /* 
-        Displays a list of all future bookings for all meeting rooms and when you click in one of the 
-        bookings of the list it should take the user to that booking's page/view
-
-        ToDo
-        make call to retrieve bookings AND meetings
-    */
 
     useEffect(() => {
-        axios.get(`${API}/bookings`)
+        axios.get(`${API}/bookings?plusMeetingRoomData=true`)
         .then(res => {
-            console.log(res.data)
             setBookings(res.data)
         })
     }, [])

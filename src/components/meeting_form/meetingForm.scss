@@ -1,0 +1,29 @@
+@import '../../design_utils/colors';
+
+
+.meeting-form {
+
+    margin-bottom: 40px;
+    
+    li {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        list-style: none;
+        margin-bottom: 30px;
+        font-size: 1.4em;
+    }
+    label {
+        text-align: left;
+        grid-column: 1/2;
+    }
+    input {
+        grid-column: 2/3;
+        border: 2px solid ;
+        border-radius: 5px;
+    }
+
+    &__border-div {
+        border: 2px solid $neon-blue;
+        border-radius: 5px;
+    }
+}

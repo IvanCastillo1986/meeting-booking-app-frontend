@@ -10,25 +10,15 @@ const API = process.env.REACT_APP_API_URL
 
 export default function SingleBooking() {
 
-    /* 
-        Displays the details of the booking and a button to cancel it. 
-        Clicking cancel should prompt user to confirm that they want to cancel booking. 
-        If they choose YES, it should cancel booking and if they choose NO it should do nothing. 
-        Show a success message upon successful booking cancellation and an error message otherwise.
-    */
-
     const [showModal, setShowModal] = useState(false)
     const [hideModal, setHideModal] = useState(true)
     const [showSuccessCancel, setShowSuccessCancel] = useState(0)
     const { state } = useLocation()
     const { booking } = state
-    console.log(booking)
 
     const handleDelete = (id) => {
-        console.log(id)
         axios.delete(`${API}/bookings/${id}`)
         .then(res => {
-            console.log(res.data)
             setShowSuccessCancel(1)
             setHideModal(true)
         }).catch(err => {

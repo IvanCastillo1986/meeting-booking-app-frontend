@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { Alert, Snackbar } from '@mui/material'
 import axios from 'axios'
 
 
@@ -7,28 +8,19 @@ import './bookingForm.scss'
 
 const API = process.env.REACT_APP_API_URL
 
-{/* 
-    ToDo
-    Display a form and all its future bookings.
-    
-    Display a form to book the booking room. The form must include booking meeting_name, Start Date, End Date,
-    and Attendees input fields and a Submit button. The Attendees input should be optional and all others
-    required. Show a success message upon successful booking creation and an error message otherwise.
 
-    Should also display a list of all existing future bookings and when you click on one of the bookings
-    of the list it should take the user to that booking's page/view.
-*/}
-
-export default function GameForm({ method, oldGame }) {
+export default function BookingForm() {
     
+    const [showBookSuccess, setShowBookSuccess] = useState(false)
+    const [showBookError, setShowBookError] = useState(false)
     const { state } = useLocation()
     const { room } = state
-    console.log(room)
 
     const [booking, setBooking] = useState({
         meeting_name: '',
-        start: '',
-        end: '',
+        meeting_room_id: room.id,
+        start_date: '',
+        end_date: '',
         attendees: ''
     })
 
@@ -41,37 +33,29 @@ export default function GameForm({ method, oldGame }) {
 
     function handleSubmit(e) {
         e.preventDefault()
+        setShowBookSuccess(false)
+        setShowBookError(false)
 
         try {
-            axios.post(`${API}/booking-rooms`, booking)
+            axios.post(`${API}/bookings`, booking)
             .then(() => {
                 setBooking({
                     meeting_name: '',
-                    start: '',
-                    end: '',
-                    attendees: '',
-                    meeting_room_id: ''
+                    start_date: '',
+                    end_date: '',
+                    attendees: ''
                 })
+                setShowBookSuccess(true)
+                console.log('successfully booked')
             }).catch(err => {
-                console.log(`Error in MeetingForm handleSubmit()`, err)
+                setShowBookError(true)
+                console.log(`Error in BookingForm handleSubmit()`, err)
             })
 
         } catch (err) {
             console.log('Error adding game:', err)
         }
     }
-
-    // function editGame(e) {
-    //     e.preventDefault()
-
-    //     axios.put(`${API}/games/${game.id}`, game)
-    //     .then((res) => {
-    //         console.log(res)
-    //         navigate(-1)
-    //     }).catch(err => {
-    //         console.log(`Error in GameForm editGame()`, err)
-    //     })
-    // }
     
 
 
@@ -83,14 +67,14 @@ export default function GameForm({ method, oldGame }) {
                     <input type="text" id='meeting_name' value={booking.meeting_name || ''} onChange={handleChange} required />
                 </li>
 
-                <li className='start'>
-                    <label htmlFor="start">Start:</label>
-                    <input type="text" id='start' value={booking.start || ''} onChange={handleChange} required />
+                <li className='start_date'>
+                    <label htmlFor="start_date">Start:</label>
+                    <input type="text" id='start_date' value={booking.start_date || ''} onChange={handleChange} required />
                 </li>
                 
-                <li className='end'>
-                    <label htmlFor="end">End:</label>
-                    <input type="text" id='end' value={booking.end || ''} onChange={handleChange} required />
+                <li className='end_date'>
+                    <label htmlFor="end_date">End:</label>
+                    <input type="text" id='end_date' value={booking.end_date || ''} onChange={handleChange} required />
                 </li>
 
                 <li className='attendees'>
@@ -100,6 +84,22 @@ export default function GameForm({ method, oldGame }) {
 
                 <button type="submit">Submit</button>
             </form>
+
+            <Snackbar open={showBookSuccess} autoHideDuration={6000} 
+                onClose={() => setShowBookSuccess(false)}
+            >
+                <Alert severity="success" sx={{ width: '100%' }}>
+                    You have booked a meeting
+                </Alert>
+            </Snackbar>
+
+            <Snackbar open={showBookError} autoHideDuration={6000} 
+                onClose={() => setShowBookError(false)}
+            >
+                <Alert severity="error" sx={{ width: '100%' }}>
+                    Error booking a meeting
+                </Alert>
+            </Snackbar>
         </>
     )
 }
