@@ -13,6 +13,7 @@ export default function BookingForm() {
     
     const [showBookSuccess, setShowBookSuccess] = useState(false)
     const [showBookError, setShowBookError] = useState(false)
+    const [showSchedulingConflict, setShowSchedulingConflict] = useState(false)
     const { state } = useLocation()
     const { room } = state
 
@@ -33,27 +34,32 @@ export default function BookingForm() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        setShowBookSuccess(false)
-        setShowBookError(false)
 
         try {
             axios.post(`${API}/bookings`, booking)
-            .then(() => {
-                setBooking({
+            .then((res) => {
+                setBooking({ 
+                    meeting_room_id: room.id,
                     meeting_name: '',
                     start_date: '',
                     end_date: '',
                     attendees: ''
                 })
-                setShowBookSuccess(true)
-                console.log('successfully booked')
+                
+                if (Array.isArray(res.data)) {
+                    setShowSchedulingConflict(true)
+                    // console.log('Your booking is conflicting with another booking. Check schedule.')
+                } else {
+                    setShowBookSuccess(true)
+                    // console.log('successfully booked')
+                }
             }).catch(err => {
                 setShowBookError(true)
-                console.log(`Error in BookingForm handleSubmit()`, err)
+                console.log(`Error in BookingForm handleSubmit()`, err.message)
             })
 
         } catch (err) {
-            console.log('Error adding game:', err)
+            console.log('Error adding game:', err.message)
         }
     }
     
@@ -85,19 +91,27 @@ export default function BookingForm() {
                 <button type="submit">Submit</button>
             </form>
 
-            <Snackbar open={showBookSuccess} autoHideDuration={6000} 
+            <Snackbar open={showBookSuccess} autoHideDuration={5000} 
                 onClose={() => setShowBookSuccess(false)}
             >
                 <Alert severity="success" sx={{ width: '100%' }}>
-                    You have booked a meeting
+                    You have successfully booked a meeting
                 </Alert>
             </Snackbar>
 
-            <Snackbar open={showBookError} autoHideDuration={6000} 
+            <Snackbar open={showBookError} autoHideDuration={5000} 
                 onClose={() => setShowBookError(false)}
             >
                 <Alert severity="error" sx={{ width: '100%' }}>
                     Error booking a meeting
+                </Alert>
+            </Snackbar>
+
+            <Snackbar open={showSchedulingConflict} autoHideDuration={5000} 
+                onClose={() => setShowSchedulingConflict(false)}
+            >
+                <Alert severity="error" sx={{ width: '100%' }}>
+                    Booking is conflicting with another meeting in this room
                 </Alert>
             </Snackbar>
         </>

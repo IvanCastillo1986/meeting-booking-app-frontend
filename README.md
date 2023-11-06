@@ -1,4 +1,3 @@
-# Blackstone Take-home Assignment
 # Meeting Room Booking App
 
 
@@ -7,7 +6,7 @@ If you have not yet started the back-end, navigate to the back-end project and f
 there.
 
 Otherwise:
-Open the terminal and navigate to the same level in the blackstone-frontend React app as package.json:
+Open the terminal and make sure you are in the same level in the blackstone-frontend React app as package.json:
 blackstone-frontend/
 
 Create a file titled .env in this directory and copy/paste the following text, as is, without quotes: 

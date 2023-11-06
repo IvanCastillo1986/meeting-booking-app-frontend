@@ -16,10 +16,6 @@ export default function SingleMeetingRoom() {
     const { state } = useLocation()
     const { room } = state
 
-    {/* 
-        ToDo
-        Change date to human-readable format!
-    */}
 
     useEffect(() => {
         axios.get(`${API}/meeting-rooms/${room.id}/bookings`) 

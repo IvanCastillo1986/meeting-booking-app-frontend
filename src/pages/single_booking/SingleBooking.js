@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { Button, Modal, Box, Typography, Alert, Snackbar } from '@mui/material'
+import { convertIsoDateToReadableStr } from '../../helper/convertIsoDateToReadable'
 
+import './singleBooking.scss'
+
+console.log(convertIsoDateToReadableStr)
 
 
 const API = process.env.REACT_APP_API_URL
@@ -43,12 +47,12 @@ export default function SingleBooking() {
     return (
         <div className='single-booking'>
             <h2>{booking.meeting_name}</h2>
-            <p>Start: {booking.start_date}</p>
-            <p>End: {booking.end_date}</p>
+            <p>Start: {convertIsoDateToReadableStr(booking.start_date)}</p>
+            <p>End: {convertIsoDateToReadableStr(booking.end_date)}</p>
             <p>Floor: {booking.floor}</p>
-            <Button variant="contained" onClick={() => {setShowModal(true); setHideModal(false)}}>
+            <button onClick={() => {setShowModal(true); setHideModal(false)}}>
                 Cancel Booking
-            </Button>
+            </button>
 
             {!hideModal &&
             <Modal

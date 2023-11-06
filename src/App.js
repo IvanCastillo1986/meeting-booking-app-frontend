@@ -20,25 +20,6 @@ function App() {
     <div className="App">
       <Navbar />
 
-        {/* 
-          '/'
-          <Home />
-            <MeetingRooms />
-            Shows all meetings
-          
-          '/meetingrooms/:id
-          <SingleMeetingRoom />
-          Shows one meeting room
-              
-          '/meetingrooms/new'
-          <NewRoom />
-
-          '/bookings'
-          <Bookings />
-
-          '/bookings/:id'
-          <SingleBooking />
-        */}
       <div className='pageContainer'>
         <Routes>
           <Route index element={<Home />} />
