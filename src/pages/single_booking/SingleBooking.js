@@ -6,9 +6,6 @@ import { convertIsoDateToReadableStr } from '../../helper/convertIsoDateToReadab
 
 import './singleBooking.scss'
 
-console.log(convertIsoDateToReadableStr)
-
-
 const API = process.env.REACT_APP_API_URL
 
 
